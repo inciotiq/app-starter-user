@@ -1,7 +1,7 @@
 package com.iotiq.user.messages;
 
-import com.iotiq.commons.PageableRequest;
-import com.iotiq.commons.SearchRequest;
+import com.iotiq.commons.message.request.PageableRequest;
+import com.iotiq.commons.message.request.SearchRequest;
 import com.iotiq.user.domain.AccountInfo_;
 import com.iotiq.user.domain.Person_;
 import com.iotiq.user.domain.User;

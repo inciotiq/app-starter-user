@@ -1,7 +1,7 @@
 package com.iotiq.user;
 
-import com.iotiq.commons.PagedResponse;
-import com.iotiq.commons.PagedResponseBuilder;
+import com.iotiq.commons.message.response.PagedResponse;
+import com.iotiq.commons.message.response.PagedResponseBuilder;
 import com.iotiq.user.domain.User;
 import com.iotiq.user.messages.UserCreateDto;
 import com.iotiq.user.messages.UserDto;
