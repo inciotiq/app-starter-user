@@ -3,6 +3,7 @@ package com.iotiq.user;
 import com.iotiq.commons.message.response.PagedResponse;
 import com.iotiq.commons.message.response.PagedResponseBuilder;
 import com.iotiq.user.domain.User;
+import com.iotiq.user.internal.UserService;
 import com.iotiq.user.messages.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ public class UserController {
     @GetMapping
 //    @PreAuthorize("hasAuthority(@UserManagementAuth.VIEW)")
     public PagedResponse<UserDto> getAll(UserFilter userFilter, Sort sort) {
-        Page<User> userPage = userService.findAll(userFilter.buildSpecification(), userFilter.buildPageable(sort));
+        Page<User> userPage = userService.findAll(userFilter, sort);
         List<UserDto> dtos = userPage.getContent().stream().map(UserDto::of).toList();
 
         return PagedResponseBuilder.createResponse(userPage, dtos);
