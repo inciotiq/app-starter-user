@@ -2,6 +2,7 @@ package com.iotiq.user.internal;
 
 import com.iotiq.commons.domain.AbstractMapper;
 import com.iotiq.commons.exceptions.RequiredFieldMissingException;
+import com.iotiq.commons.util.PasswordUtil;
 import com.iotiq.user.domain.User;
 import com.iotiq.user.exceptions.UserNotFoundException;
 import com.iotiq.user.messages.UpdatePasswordDto;
@@ -28,6 +29,7 @@ public class UserService {
 
     private final UserMapper userMapper = new UserMapper();
     private final UserRepository userRepository;
+    private final PasswordUtil passwordUtil;
 
     public Page<User> findAll(UserFilter userFilter, Sort sort) {
         return userRepository.findAll(userFilter.buildSpecification(), userFilter.buildPageable(sort));
@@ -42,7 +44,7 @@ public class UserService {
         User user = new User();
 
         userMapper.map(request, user);
-        setIfNotNull(user::setPassword, () -> encode(request.getPassword()), request.getPassword());
+        setIfNotNull(user::setPassword, () -> passwordUtil.encode(request.getPassword()), request.getPassword());
         setIfNotNull(user::setRole, request::getRole);
         setIfNotNull(user::setUsername, request::getUsername);
 
@@ -108,7 +110,7 @@ public class UserService {
     }
 
     private void setPassword(User user, String newPassword) {
-        user.setPassword(encode(newPassword));
+        user.setPassword(passwordUtil.encode(newPassword));
     }
 
     protected static class UserMapper extends AbstractMapper<UserUpdateDto, User> {
