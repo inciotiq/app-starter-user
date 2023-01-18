@@ -65,4 +65,16 @@ public class User extends AbstractPersistable<UUID> implements UserDetails {
     public boolean isEnabled() {
         return accountSecurity.isAccountNonLocked();
     }
+
+    public void setPassword(String password) {
+        this.credentials.setPassword(password);
+    }
+
+    public void setRole(Role role) {
+        this.accountSecurity.setRole(role);
+    }
+
+    public void setUsername(String username) {
+        this.accountInfo.setUsername(username);
+    }
 }

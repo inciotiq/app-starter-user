@@ -1,4 +1,4 @@
-package com.iotiq.user;
+package com.iotiq.user.internal;
 
 import com.iotiq.user.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
