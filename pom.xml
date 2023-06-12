@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.1</version>
+        <version>3.1.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.iotiq</groupId>
@@ -14,7 +14,7 @@
     <name>user</name>
     <description>user</description>
     <properties>
-        <java.version>19</java.version>
+        <java.version>20</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -40,7 +40,6 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
-            <version>5.6.2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -59,25 +58,21 @@
         <dependency>
             <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-jpamodelgen</artifactId>
-            <version>6.1.6.Final</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
         <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
-            <version>3.0.2</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api -->
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>4.0.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>8.0.0.Final</version>
         </dependency>
     </dependencies>
 
