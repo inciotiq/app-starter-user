@@ -19,7 +19,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Objects;
 import java.util.UUID;
 
 import static com.iotiq.commons.util.NullHandlerUtil.setIfNotNull;
@@ -48,6 +47,9 @@ public class UserService {
         setIfNotNull(user::setPassword, () -> passwordUtil.encode(request.getPassword()), request.getPassword());
         setIfNotNull(user::setRole, request::getRole);
         setIfNotNull(user::setUsername, request::getUsername);
+        setIfNotNull(s -> user.getPersonalInfo().setFirstName(s), request::getFirstname);
+        setIfNotNull(s -> user.getPersonalInfo().setLastName(s), request::getLastname);
+        setIfNotNull(s -> user.getPersonalInfo().setEmail(s), request::getEmail);
 
         return userRepository.save(user);
     }
