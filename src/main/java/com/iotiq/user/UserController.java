@@ -7,13 +7,11 @@ import com.iotiq.user.internal.UserService;
 import com.iotiq.user.messages.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,9 +21,6 @@ import java.util.UUID;
 public class UserController {
 
     private final UserService userService;
-
-    @Value("${application.name}")
-    private String applicationName;
 
     @GetMapping
 //    @PreAuthorize("hasAuthority(@UserManagementAuth.VIEW)")
@@ -46,7 +41,7 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
 //    @PreAuthorize("hasAuthority(@UserManagementAuth.CREATE)")
-    public UserDto create(@RequestBody @Valid UserCreateDto request) throws URISyntaxException {
+    public UserDto create(@RequestBody @Valid UserCreateDto request) {
         User user = userService.create(request);
         return UserDto.of(user);
     }
