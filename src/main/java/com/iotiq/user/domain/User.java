@@ -1,5 +1,6 @@
 package com.iotiq.user.domain;
 
+import com.iotiq.user.domain.authorities.Role;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
