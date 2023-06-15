@@ -1,6 +1,6 @@
 package com.iotiq.user.messages;
 
-import com.iotiq.user.domain.Role;
+import com.iotiq.user.domain.authorities.Role;
 import com.iotiq.user.domain.User;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

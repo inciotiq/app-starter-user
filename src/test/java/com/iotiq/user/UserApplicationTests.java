@@ -1,7 +1,7 @@
 package com.iotiq.user;
 
-import com.iotiq.user.domain.Role;
 import com.iotiq.user.domain.User;
+import com.iotiq.user.domain.authorities.BaseRole;
 import com.iotiq.user.internal.UserRepository;
 import com.iotiq.user.messages.UserCreateDto;
 import com.jayway.jsonpath.JsonPath;
@@ -67,7 +67,7 @@ class UserApplicationTests {
         userCreateDto.setLastname(LASTNAME);
         userCreateDto.setUsername(USERNAME);
         userCreateDto.setPassword(PASSWORD);
-        userCreateDto.setRole(Role.ADMIN);
+        userCreateDto.setRole(BaseRole.ADMIN);
 
         ResultActions result = mockMvc.perform(
                 post("/api/v1/users").contentType(MediaType.APPLICATION_JSON)
@@ -86,7 +86,7 @@ class UserApplicationTests {
             assertThat(testUser.getPersonalInfo().getEmail()).isEqualTo(MAIL);
             assertThat(testUser.getPersonalInfo().getFirstName()).isEqualTo(FIRSTNAME);
             assertThat(testUser.getPersonalInfo().getLastName()).isEqualTo(LASTNAME);
-            assertThat(testUser.getAccountSecurity().getRole()).isEqualTo(Role.ADMIN);
+            assertThat(testUser.getAccountSecurity().getRole()).isEqualTo(BaseRole.ADMIN);
         });
     }
 
