@@ -11,20 +11,6 @@ import java.io.IOException;
 public class RoleSerializer extends JsonSerializer<Role> {
     @Override
     public void serialize(Role role, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-//        jsonGenerator.writeStartObject();
-//        jsonGenerator.writeStringField("role", role.getClass().getSimpleName()); // fixme
-//        jsonGenerator.writeEndObject();
         jsonGenerator.writeString(role.name());
     }
 }
-
-
-//public class MachinePhaseSerializer extends JsonSerializer<MachinePhase> {
-//    @Override
-//    public void serialize(MachinePhase value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-//        gen.writeStartObject();
-//        gen.writeStringField("phase", value.getClass().getSimpleName());
-//        gen.writeStringField("status", value.name());
-//        gen.writeEndObject();
-//    }
-//}
