@@ -33,6 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
@@ -130,7 +131,7 @@ class UserApplicationTests {
         userUpdateDto.setFirstname(FIRSTNAME + "updated");
         userUpdateDto.setLastname(LASTNAME + "updated");
         userUpdateDto.setUsername(USERNAME + "updated");
-        userUpdateDto.setRole(Role.ADMIN);
+        userUpdateDto.setRole(BaseRole.ADMIN);
 
         ResultActions result = mockMvc
                 .perform(
@@ -156,7 +157,26 @@ class UserApplicationTests {
             assertThat(testUser.getPersonalInfo().getEmail()).isEqualTo(MAIL + "updated");
             assertThat(testUser.getPersonalInfo().getFirstName()).isEqualTo(FIRSTNAME + "updated");
             assertThat(testUser.getPersonalInfo().getLastName()).isEqualTo(LASTNAME + "updated");
-            assertThat(testUser.getAccountSecurity().getRole()).isEqualTo(Role.ADMIN);
+            assertThat(testUser.getAccountSecurity().getRole()).isEqualTo(BaseRole.ADMIN);
+        });
+    }
+
+    @Test
+    @Order(4)
+    void remove() throws Exception {
+        int databaseSizeBeforeCreate = userRepository.findAll().size();
+
+        assertThat(databaseSizeBeforeCreate).isEqualTo(1);
+
+        ResultActions result = mockMvc
+                .perform(
+                        delete("/api/v1/users/" + id)
+                );
+
+        result.andExpect(status().isOk());
+
+        assertPersistedUsers(users -> {
+            assertThat(users).hasSize(databaseSizeBeforeCreate - 1);
         });
     }
 
