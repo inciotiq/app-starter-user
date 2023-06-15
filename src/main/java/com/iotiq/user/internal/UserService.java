@@ -58,8 +58,11 @@ public class UserService {
     public User update(UUID id, UserUpdateDto request) {
         User user = userRepository.findById(id).orElseThrow(UserNotFoundException::new);
 
-        userMapper.map(request, user);
-        updateIfAllowed(request, user);
+        user.setUsername(request.getUsername());
+        user.getPersonalInfo().setFirstName(request.getFirstname());
+        user.getPersonalInfo().setLastName(request.getLastname());
+        user.getPersonalInfo().setEmail(request.getEmail());
+        user.setRole(request.getRole());
 
         return user;
     }
