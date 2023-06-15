@@ -26,8 +26,7 @@ import java.util.function.Consumer;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
@@ -110,6 +109,25 @@ class UserApplicationTests {
                         jsonPath("$.lastname", is(LASTNAME)),
                         jsonPath("$.username", is(USERNAME))
                 );
+    }
+
+    @Test
+    @Order(4)
+    void remove() throws Exception {
+        int databaseSizeBeforeCreate = userRepository.findAll().size();
+
+        assertThat(databaseSizeBeforeCreate).isEqualTo(1);
+
+        ResultActions result = mockMvc
+                .perform(
+                        delete("/api/v1/users/" + id)
+                );
+
+        result.andExpect(status().isOk());
+
+        assertPersistedUsers(users -> {
+            assertThat(users).hasSize(databaseSizeBeforeCreate - 1);
+        });
     }
 
     private void assertPersistedUsers(Consumer<List<User>> userAssertion) {
