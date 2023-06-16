@@ -39,6 +39,10 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 
+    public User find(String username) {
+        return userRepository.findByAccountInfoUsername(username).orElseThrow(UserNotFoundException::new);
+    }
+
     @Transactional
     public User create(UserCreateDto request) {
         User user = new User();
