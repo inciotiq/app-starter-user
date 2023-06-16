@@ -3,8 +3,8 @@ package com.iotiq.user;
 import com.iotiq.user.domain.User;
 import com.iotiq.user.domain.authorities.BaseRole;
 import com.iotiq.user.internal.UserRepository;
-import com.iotiq.user.messages.UserCreateDto;
-import com.iotiq.user.messages.UserUpdateDto;
+import com.iotiq.user.messages.request.UserCreateDto;
+import com.iotiq.user.messages.request.UserUpdateDto;
 import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -30,9 +30,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -52,8 +49,7 @@ class UserApplicationTests {
 
     @Container
     @ServiceConnection
-    static PostgreSQLContainer<?> postgres =
-            new PostgreSQLContainer<>("postgres:15-alpine");
+    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:15.2-alpine");
 
     @Autowired
     MockMvc mockMvc;

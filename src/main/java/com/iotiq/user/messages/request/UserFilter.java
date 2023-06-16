@@ -1,4 +1,4 @@
-package com.iotiq.user.messages;
+package com.iotiq.user.messages.request;
 
 import com.iotiq.commons.message.request.PageableRequest;
 import com.iotiq.commons.message.request.SearchRequest;

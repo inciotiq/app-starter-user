@@ -1,4 +1,4 @@
-package com.iotiq.user.messages;
+package com.iotiq.user.messages.request;
 
 import com.iotiq.user.domain.authorities.Role;
 import jakarta.validation.constraints.Email;
