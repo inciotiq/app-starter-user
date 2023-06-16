@@ -15,7 +15,7 @@ import java.util.UUID;
 public class LoginDto {
     UUID id;
     String username;
-    Set<String> roles;
+    Set<String> authorities;
     String idToken;
     String refreshToken;
 }

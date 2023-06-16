@@ -57,7 +57,7 @@ public class AuthenticationController {
         return LoginDto.builder()
                 .id(user.getId())
                 .username(user.getUsername())
-                .roles(user.getAuthorities().stream().map(authority -> authority.toString()).collect(Collectors.toSet()))
+                .authorities(user.getAuthorities().stream().map(Object::toString).collect(Collectors.toSet()))
                 .idToken(accessToken)
                 .refreshToken(refreshToken)
                 .build();
@@ -77,7 +77,7 @@ public class AuthenticationController {
         return LoginDto.builder()
                 .id(user.getId())
                 .username(user.getUsername())
-                .roles(user.getAuthorities().stream().map(authority -> authority.toString()).collect(Collectors.toSet()))
+                .authorities(user.getAuthorities().stream().map(Object::toString).collect(Collectors.toSet()))
                 .idToken(accessToken)
                 .build();
     }
