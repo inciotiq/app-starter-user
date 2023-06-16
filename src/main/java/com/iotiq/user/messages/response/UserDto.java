@@ -1,4 +1,4 @@
-package com.iotiq.user.messages;
+package com.iotiq.user.messages.response;
 
 import com.iotiq.user.domain.authorities.Role;
 import com.iotiq.user.domain.User;
