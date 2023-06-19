@@ -4,14 +4,11 @@ import com.iotiq.user.domain.User;
 import com.iotiq.user.internal.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * Authenticate a user from the database.
@@ -34,7 +31,7 @@ public class DomainUserDetailsService implements UserDetailsService {
 
         return userRepository
                 .findByAccountInfoUsername(username)
-                .map(user -> createSpringSecurityUser(user))
+                .map(this::createSpringSecurityUser)
                 .orElseThrow(() -> new UsernameNotFoundException("User with username " + username + " was not found in the database"));
     }
 
