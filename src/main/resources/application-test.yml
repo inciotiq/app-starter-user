@@ -1,0 +1,7 @@
+app:
+  jwt:
+    secret: aVDuUhiKSBlmn1muHNRfBPKwJu35l7BuaVDuUhiKSBlmn1muHNRfBPKwJu35l7BuaVDuUhiKSBlmn1muHNRfBPKwJu35l7BuaVDuUhiKSBlmn1muHNRfBPKwJu35l7Bu
+    refresh:
+      expirationMinutes: 360
+    access:
+      expirationMinutes: 60

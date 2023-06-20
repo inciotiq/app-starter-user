@@ -32,7 +32,7 @@ public class DomainUserDetailsService implements UserDetailsService {
         return userRepository
                 .findByAccountInfoUsername(username)
                 .map(this::createSpringSecurityUser)
-                .orElseThrow(() -> new UsernameNotFoundException("User with email " + username + " was not found in the database"));
+                .orElseThrow(() -> new UsernameNotFoundException("User with username " + username + " was not found in the database"));
     }
 
     private org.springframework.security.core.userdetails.User createSpringSecurityUser(User user) {
