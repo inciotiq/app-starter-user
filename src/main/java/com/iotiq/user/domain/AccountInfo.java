@@ -9,4 +9,6 @@ import java.io.Serializable;
 @Embeddable
 public class AccountInfo implements Serializable {
     String username;
+
+
 }

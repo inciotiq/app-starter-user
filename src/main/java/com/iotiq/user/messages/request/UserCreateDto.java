@@ -1,4 +1,4 @@
-package com.iotiq.user.messages;
+package com.iotiq.user.messages.request;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;

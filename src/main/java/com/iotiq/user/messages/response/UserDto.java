@@ -1,13 +1,16 @@
-package com.iotiq.user.messages;
+package com.iotiq.user.messages.response;
 
-import com.iotiq.user.domain.Role;
+import com.iotiq.user.domain.authorities.Role;
 import com.iotiq.user.domain.User;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.UUID;
+
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class UserDto /*extends BaseDto*/ {
+    private UUID id;
     private String username;
     private Role role;
     private String firstname;
@@ -16,6 +19,7 @@ public class UserDto /*extends BaseDto*/ {
 
     public static UserDto of(User user) {
         UserDto dto = new UserDto();
+        dto.setId(user.getId());
         dto.setUsername(user.getUsername());
         dto.setRole(user.getAccountSecurity().getRole());
         dto.setFirstname(user.getPersonalInfo().getFirstName());

@@ -1,11 +1,11 @@
 package com.iotiq.user.domain;
 
+import com.iotiq.user.domain.authorities.Role;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,7 +19,6 @@ import java.util.UUID;
 @Setter
 @Table(name = "users")
 @EqualsAndHashCode(callSuper = true)
-@NoArgsConstructor
 public class User extends AbstractPersistable<UUID> implements UserDetails {
 
     @Embedded
@@ -30,6 +29,13 @@ public class User extends AbstractPersistable<UUID> implements UserDetails {
     private AccountSecurity accountSecurity;
     @Embedded
     private Person personalInfo;
+
+    public User() {
+        this.accountInfo = new AccountInfo();
+        this.credentials = new Credentials();
+        this.accountSecurity = new AccountSecurity();
+        this.personalInfo = new Person();
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

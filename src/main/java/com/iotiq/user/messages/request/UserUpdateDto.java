@@ -1,6 +1,6 @@
-package com.iotiq.user.messages;
+package com.iotiq.user.messages.request;
 
-import com.iotiq.user.domain.Role;
+import com.iotiq.user.domain.authorities.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

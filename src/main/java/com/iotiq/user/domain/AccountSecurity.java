@@ -1,7 +1,8 @@
 package com.iotiq.user.domain;
 
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Transient;
+import com.iotiq.user.domain.authorities.Role;
+import com.iotiq.user.domain.authorities.RoleColumnConverter;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -17,6 +18,7 @@ public class AccountSecurity implements Serializable {
     private boolean accountNonExpired;
     private boolean accountNonLocked;
     private boolean enabled;
+    @Convert(converter = RoleColumnConverter.class)
     private Role role;
 
     @Transient
