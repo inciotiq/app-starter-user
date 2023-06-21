@@ -8,6 +8,7 @@ import com.iotiq.user.messages.request.RefreshTokenRequest;
 import com.iotiq.user.messages.response.LoginDto;
 import com.iotiq.user.security.jwt.JWTFilter;
 import com.iotiq.user.security.jwt.TokenProvider;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+@Tag(name = "Authentication", description = "Authentication API")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/auth")

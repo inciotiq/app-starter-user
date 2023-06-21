@@ -9,6 +9,8 @@ import com.iotiq.user.messages.request.UserCreateDto;
 import com.iotiq.user.messages.request.UserFilter;
 import com.iotiq.user.messages.request.UserUpdateDto;
 import com.iotiq.user.messages.response.UserDto;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+@Tag(name = "Users", description = "Users API")
 @RestController
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
@@ -58,6 +61,7 @@ public class UserController {
         return UserDto.of(user);
     }
 
+    @Operation(tags = "Password", summary = "Change the password of a user", description = "Uses the user id ")
     @PutMapping("/{id}/password")
     @PreAuthorize("hasAuthority(@UserManagementAuth.CHANGE_PASSWORD) or #id.equals(principal.id)")
     public UserDto updatePassword(@PathVariable UUID id, @RequestBody @Valid UpdatePasswordDto request) {
